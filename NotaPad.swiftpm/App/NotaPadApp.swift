@@ -18,7 +18,7 @@ struct NotaPadApp: App {
         WindowGroup {
             switch containerResult {
             case .success(let container):
-                RootView()
+                LibraryView()
                     .modelContainer(container)
             case .failure(let error):
                 ContentUnavailableView(

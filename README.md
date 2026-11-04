@@ -14,5 +14,5 @@ Gesamtplan: `C:\Users\serap\Desktop\NotaPad-Plan\NotaPad-Plan.md`
 
 ## Stand
 - P0: Repo, Kopierskript, SDK-Check (`Design/GlassCompat.swift`), Prüfliste-Ansicht (`Debug/PruefListeView.swift`)
-- P1 begonnen: Design-Tokens, Datenmodelle, FileStore, App-Start mit ModelContainer
+- P1 Code geschrieben (T1.5–T1.14): Bibliothek, Seitenleiste, Raster/Liste, Sortieren, Ordner, Verschieben, Auswahlmodus, Papierkorb, Titelsuche, Editor-Platzhalter – noch NICHT auf dem iPad getestet
 - Bundle-ID **nie ändern** (Daten hängen daran).
