@@ -92,7 +92,7 @@ final class DocumentViewController: UIViewController, UIScrollViewDelegate, UIGe
         for info in infos {
             let pv = PageView(info: info, notebookID: notebookID, store: store)
             pv.frame.origin = CGPoint(x: (contentWidth - info.width) / 2, y: y)
-            pv.onChange = { [weak self] _ in self?.pageChanged($0) }
+            pv.onChange = { [weak self] changed in self?.pageChanged(changed) }
             pv.onFocus = { [weak self] canvas in self?.lastCanvas = canvas; self?.reportUndoState() }
             content.addSubview(pv)
             pageViews.append(pv)
