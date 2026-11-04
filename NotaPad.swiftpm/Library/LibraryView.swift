@@ -20,7 +20,9 @@ struct LibraryView: View {
             EditorView(notebook: notebook)
         }
         .sheet(isPresented: $showSettings) { SettingsView() }
+        .onAppear { CrashReporter.step = "Bibliothek wird angezeigt" }
         .task {
+            CrashReporter.step = "Bibliothek: Papierkorb aufräumen"
             // Papierkorb aufräumen beim Start (Plan 5.9)
             try? LibraryService(context: context).purgeExpired(days: trashDays)
         }

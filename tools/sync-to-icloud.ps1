@@ -1,7 +1,7 @@
 # Kopiert den Code aus dem Git-Repo nach iCloud Drive (Swift Playgrounds-Projekt).
 # Richtung: nur Repo -> iCloud. Package.swift und .swiftpm-Metadaten bleiben unberührt.
 param(
-    [string]$Ziel = "$env:USERPROFILE\iCloudDrive\Playgrounds\NotaPad.swiftpm"
+    [string]$Ziel = "$env:USERPROFILE\iCloudDrive\iCloud~com~apple~Playgrounds\Notepad.swiftpm"
 )
 $ErrorActionPreference = "Stop"
 $quelle = Join-Path $PSScriptRoot "..\NotaPad.swiftpm" | Resolve-Path

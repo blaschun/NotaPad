@@ -34,6 +34,7 @@ struct EditorView: View {
             }
         }
         .animation(Theme.Motion.standard, value: model.showSidebar)
+        .onAppear { CrashReporter.step = "Editor geöffnet" }
         .background(Color(.secondarySystemBackground))
         .onChange(of: model.tool.settings) { model.tool.save() }
         .alert("Gehe zu Seite", isPresented: $showGoto) {

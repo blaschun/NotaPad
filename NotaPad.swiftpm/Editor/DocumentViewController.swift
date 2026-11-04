@@ -49,6 +49,7 @@ final class DocumentViewController: UIViewController, UIScrollViewDelegate, UIGe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        CrashReporter.step = "Zeichenfläche wird aufgebaut"
         view.backgroundColor = .secondarySystemBackground
         scrollView.delegate = self
         scrollView.frame = view.bounds
@@ -183,6 +184,7 @@ final class DocumentViewController: UIViewController, UIScrollViewDelegate, UIGe
             .sorted { abs($0.frame.midY - center) < abs($1.frame.midY - center) }
             .prefix(8)
         let wantedSet = Set(wanted.map { ObjectIdentifier($0) })
+        CrashReporter.step = "Seiten aktivieren (Zeichenflächen laden)"
         for pv in pageViews {
             if wantedSet.contains(ObjectIdentifier(pv)) { pv.activate(active) } else { pv.deactivate() }
         }
