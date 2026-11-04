@@ -9,7 +9,7 @@ Gesamtplan: `C:\Users\serap\Desktop\NotaPad-Plan\NotaPad-Plan.md`
    `App/NotaPadApp.swift` aus diesem Repo ersetzt sie.
 2. **Auf dem PC:** Code im Ordner `NotaPad.swiftpm\` bearbeiten, dann `tools\sync-to-icloud.ps1` ausführen.
    Das Skript kopiert alle Quellordner nach `iCloudDrive\Playgrounds\NotaPad.swiftpm` und fasst `Package.swift` nie an.
-3. **Auf dem iPad:** Projekt öffnen → ▶. In der App oben rechts „Prüfliste" (Q1–Q20) ausfüllen.
+3. **Auf dem iPad:** Projekt öffnen → ▶. In der App: Seitenleiste → Einstellungen → „Prüfliste" (Q1–Q20) ausfüllen.
 4. Nie gleichzeitig am PC und am iPad am Code ändern (iCloud-Konfliktkopien).
 
 ## Stand
