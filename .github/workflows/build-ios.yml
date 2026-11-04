@@ -1,0 +1,65 @@
+# Baut NotaPad auf einem GitHub-Mac und stellt die fertige, unsignierte .ipa als Download bereit.
+# Läuft bei jedem Push auf "main" und auf Knopfdruck (Actions -> iOS Build -> Run workflow).
+name: iOS Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Neuestes Xcode wählen (iOS-26-SDK nötig)
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Versionen anzeigen
+        run: |
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+
+      - name: XcodeGen installieren und Projekt erzeugen
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Bauen (ohne Signatur)
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project NotaPad.xcodeproj \
+            -scheme NotaPad \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build 2>&1 | tee build.log
+
+      - name: .ipa zusammenpacken
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/NotaPad.app Payload/
+          zip -qr NotaPad.ipa Payload
+          ls -lh NotaPad.ipa
+
+      - name: .ipa hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: NotaPad-ipa
+          path: NotaPad.ipa
+          retention-days: 30
+
+      - name: Build-Protokoll hochladen (bei Fehlern wichtig)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
+          retention-days: 7

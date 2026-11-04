@@ -3,3 +3,11 @@
 .swiftpm/xcode/
 .build/
 Referenz/
+
+# Von XcodeGen erzeugt
+*.xcodeproj/
+build/
+build-info/
+Payload/
+*.ipa
+build.log

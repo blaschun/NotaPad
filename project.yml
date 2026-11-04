@@ -1,0 +1,51 @@
+# project.yml – Bauanleitung für XcodeGen (erzeugt auf dem GitHub-Mac ein Xcode-Projekt aus dem Code in NotaPad.swiftpm).
+# Das Playgrounds-Paket (Package.swift) wird NICHT verwendet; der Code ist derselbe.
+name: NotaPad
+options:
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"            # wie in Swift Playgrounds (Swift-5-Modus)
+    CODE_SIGNING_ALLOWED: "NO"       # Signieren übernimmt später Sideloadly mit deiner Apple-ID
+    CODE_SIGNING_REQUIRED: "NO"
+    CODE_SIGN_IDENTITY: ""
+targets:
+  NotaPad:
+    type: application
+    platform: iOS
+    sources:
+      - path: NotaPad.swiftpm
+        excludes:
+          - "Package.swift"
+    info:
+      path: build-info/Info.plist
+      properties:
+        CFBundleDisplayName: NotaPad
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIRequiresFullScreen: false
+        # Notizbücher auch in der Dateien-App unter "Auf meinem iPad > NotaPad" sichtbar (zusätzliche Datensicherheit)
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        NSCameraUsageDescription: "NotaPad verwendet die Kamera, um Dokumente zu scannen und Fotos in Notizen einzufügen."
+        NSPhotoLibraryUsageDescription: "NotaPad greift auf deine Fotos zu, damit du Bilder in Notizen einfügen kannst."
+        NSMicrophoneUsageDescription: "NotaPad nimmt Audio auf, wenn du während des Schreibens eine Aufnahme startest."
+        NSSpeechRecognitionUsageDescription: "NotaPad wandelt deine Aufnahmen auf dem Gerät in Text um."
+        NSFaceIDUsageDescription: "NotaPad verwendet Face ID, um gesperrte Notizbücher zu öffnen."
+        NSLocalNetworkUsageDescription: "NotaPad verbindet sich mit deinem Backup-Server im Heimnetz."
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: at.seraphin.notapad   # nie ändern! Daran hängen die gespeicherten Notizen
+        PRODUCT_NAME: NotaPad
+        TARGETED_DEVICE_FAMILY: "2"       # nur iPad
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: "NO"
