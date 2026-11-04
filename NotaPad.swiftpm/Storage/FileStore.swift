@@ -61,6 +61,24 @@ struct FileStore {
         }
     }
 
+    /// Kopiert eine Datei/einen Ordner innerhalb eines Notizbuch-Ordners (z. B. Seite duplizieren). Fehlt die Quelle: nichts tun.
+    func copyItem(notebookID: UUID, from source: String, to target: String) throws {
+        let fm = FileManager.default
+        let base = directory(for: notebookID)
+        let src = base.appendingPathComponent(source)
+        let dst = base.appendingPathComponent(target)
+        guard fm.fileExists(atPath: src.path) else { return }
+        try fm.createDirectory(at: dst.deletingLastPathComponent(), withIntermediateDirectories: true)
+        if fm.fileExists(atPath: dst.path) { try fm.removeItem(at: dst) }
+        try fm.copyItem(at: src, to: dst)
+    }
+
+    /// Löscht eine Datei/einen Ordner innerhalb eines Notizbuch-Ordners. Fehlt sie, ist das kein Fehler.
+    func deleteItem(notebookID: UUID, relativePath: String) throws {
+        let url = directory(for: notebookID).appendingPathComponent(relativePath)
+        if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }
+    }
+
     /// Löscht den Ordner eines Notizbuchs (endgültiges Löschen). Fehlt er, ist das kein Fehler.
     func deleteDirectory(for notebookID: UUID) throws {
         let dir = directory(for: notebookID)

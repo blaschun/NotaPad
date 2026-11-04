@@ -15,4 +15,6 @@ Gesamtplan: `C:\Users\serap\Desktop\NotaPad-Plan\NotaPad-Plan.md`
 ## Stand
 - P0: Repo, Kopierskript, SDK-Check (`Design/GlassCompat.swift`), Prüfliste-Ansicht (`Debug/PruefListeView.swift`)
 - P1 Code geschrieben (T1.5–T1.14): Bibliothek, Seitenleiste, Raster/Liste, Sortieren, Ordner, Verschieben, Auswahlmodus, Papierkorb, Titelsuche, Editor-Platzhalter – noch NICHT auf dem iPad getestet
+- P2–P4 Code geschrieben: Editor mit PencilKit (Pencil-only), Marker hinter Tinte, Zoom/Scrollen, Werkzeuge + Favoriten, Undo/Redo, Autosave, eigenes Strichformat .nstk, Seitenleiste mit Miniaturen, Seitenoperationen, alle Papiervorlagen (vektor), Notfall-Export (ZIP) – noch NICHT auf dem iPad getestet
+- Mindest-iPadOS im Playgrounds-Projekt auf 18 stellen (Füller/Pinsel brauchen iOS 17+)
 - Bundle-ID **nie ändern** (Daten hängen daran).
