@@ -16,9 +16,7 @@ targets:
     type: application
     platform: iOS
     sources:
-      - path: NotaPad.swiftpm
-        excludes:
-          - "Package.swift"
+      - path: AppSources      # wird im Build aus NotaPad.swiftpm kopiert (siehe Workflow), damit XcodeGen es nicht als Paket liest
     info:
       path: build-info/Info.plist
       properties:

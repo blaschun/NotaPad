@@ -26,6 +26,7 @@ jobs:
 
       - name: XcodeGen installieren und Projekt erzeugen
         run: |
+          rm -rf AppSources && cp -R NotaPad.swiftpm AppSources && rm -f AppSources/Package.swift
           brew install xcodegen
           xcodegen generate
 

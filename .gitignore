@@ -11,3 +11,4 @@ build-info/
 Payload/
 *.ipa
 build.log
+AppSources/
